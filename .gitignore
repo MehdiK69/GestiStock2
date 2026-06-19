@@ -27,4 +27,4 @@ Thumbs.db
 *.cache
 
 # DB
-config/Database.php
+src/Database.php
