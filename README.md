@@ -1,6 +1,7 @@
 GestiStock2
 
-Application de gestion de stock développée avec PHP Natif et Vue.js
+Application de gestion de stock développée en PHP natif et Vue.js
+
 Fonctionnalités
 
     CRUD Catégories
