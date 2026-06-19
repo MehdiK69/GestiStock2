@@ -1,0 +1,30 @@
+# Dépendances
+vendor/
+node_modules/
+
+# Environnement
+.env
+.env.local
+.env.*.local
+
+# Build front
+dist/
+
+# IDE
+.idea/
+.vscode/
+*.iml
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+/logs/
+
+# PHP
+*.cache
+
+# DB
+config/Database.php
