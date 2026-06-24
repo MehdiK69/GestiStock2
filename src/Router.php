@@ -19,14 +19,19 @@ class Router {
         }
         $method = $_SERVER['REQUEST_METHOD'];
         foreach ($this->routes as $route) {
-            if(($route['path'] === $url)&&($route['method'] === $method)) {
-                $route['handler']();
-                return;
+            $pattern = preg_replace('/\{[a-z]+\}/', '(\d+)', $route['path']);
+            if(($route['method'] === $method) && preg_match('#^' . $pattern . '$#', $url, $matches)) {
+                if(isset($matches[1])){
+                    $route['handler']($matches[1]);
+                    return;
+                }else{
+                    $route['handler']();
+                    return;
+                }
             }
         }
         http_response_code(404);
         header('Content-Type: application/json');
         echo json_encode(['error' => 'Path Not Found']);
     }
-
 }
