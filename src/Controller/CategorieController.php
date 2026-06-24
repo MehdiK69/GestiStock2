@@ -2,14 +2,20 @@
 namespace App\Controller;
 use App\Repository\CategorieRepository;
 class CategorieController {
-    function index()
+    function getAllCategories()
     {
         $cr = new CategorieRepository();
-        $categories = $cr->findAll();
+        $categories = $cr->findAllCategories();
         header('Content-Type: application/json');
         echo json_encode($categories);
     }
-
+    function getOneCategorie($id){
+        $cr = new CategorieRepository();
+        $cat = $cr->findOneCategorie($id);
+        header('Content-Type: application/json');
+        http_response_code(200);
+        echo json_encode($cat);
+    }
     function store(){
         $body  = file_get_contents("php://input");
         $data = json_decode($body,true);
@@ -20,17 +26,9 @@ class CategorieController {
         echo json_encode(['message' => 'insertion success']);
     }
 
-    function find($id){
-        $cr = new CategorieRepository();
-        $cat = $cr->findOne($id);
-        header('Content-Type: application/json');
-        http_response_code(200);
-        echo json_encode($cat);
-    }
-
     function update($id){
         $cr = new CategorieRepository();
-        $cr->findOne($id);
+        $cr->findOneCategorie($id);
         $body = file_get_contents("php://input");
         $data = json_decode($body,true);
         $nom = $data['nom'];
